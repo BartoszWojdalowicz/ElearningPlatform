@@ -11,6 +11,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "egulias/email-validator": "2.1.25",
         "friendsofsymfony/rest-bundle": "^3.0",
         "gesdinet/jwt-refresh-token-bundle": "^0.10.1",
         "lexik/jwt-authentication-bundle": "^2.11",
@@ -24,7 +25,8 @@
         "symfony/maker-bundle": "^1.29",
         "symfony/proxy-manager-bridge": "5.2.*",
         "symfony/serializer": "5.2.*",
-        "symfony/yaml": "5.2.*"
+        "symfony/yaml": "5.2.*",
+        "webmozart/assert": "^1.9"
     },
     "config": {
         "optimize-autoloader": true,

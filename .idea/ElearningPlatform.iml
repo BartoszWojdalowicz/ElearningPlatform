@@ -86,6 +86,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/validator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gesdinet/jwt-refresh-token-bundle" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/apache-pack" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/webmozart/assert" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
