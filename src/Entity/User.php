@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -39,6 +41,16 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity=Profile::class, mappedBy="user", cascade={"persist", "remove"})
      */
     private $profile;
+
+    /**
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="user")
+     */
+    private $userCourses;
+
+    public function __construct()
+    {
+        $this->userCourses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -139,6 +151,36 @@ class User implements UserInterface
         }
 
         $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserCourse[]
+     */
+    public function getUserCourses(): Collection
+    {
+        return $this->userCourses;
+    }
+
+    public function addUserCourse(UserCourse $userCourse): self
+    {
+        if (!$this->userCourses->contains($userCourse)) {
+            $this->userCourses[] = $userCourse;
+            $userCourse->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserCourse(UserCourse $userCourse): self
+    {
+        if ($this->userCourses->removeElement($userCourse)) {
+            // set the owning side to null (unless already changed)
+            if ($userCourse->getUser() === $this) {
+                $userCourse->setUser(null);
+            }
+        }
 
         return $this;
     }
