@@ -45,7 +45,7 @@ class Profile
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublic;
+    private $isPublic=false;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})

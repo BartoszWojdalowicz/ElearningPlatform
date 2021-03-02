@@ -17,47 +17,47 @@ class Course
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="float", nullable=true)git s
      */
-    private $price;
+    private ?float $price;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $isPublic;
+    private $isPublic=false;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $numberOfPurchased;
+    private $numberOfPurchased=0;
 
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $rating;
+    private $rating=0.0;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $numberOfRatings;
+    private $numberOfRatings=0;
 
     /**
-     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course")
+     * @ORM\OneToMany(targetEntity=UserCourse::class, mappedBy="course",cascade="remove")
      */
-    private $userCourses;
+    private Collection $userCourses;
 
     public function __construct()
     {

@@ -10,15 +10,12 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
-#        Swagger:
-#            pattern: ^/api/doc
-#            anonymous: true
 
-#        register:
-#            pattern:  ^/api/user
-#            anonymous: true
-#            provider: app_user_provider
-#            methods: [POST]
+        register:
+            pattern:  ^/api/user
+            anonymous: true
+            provider: app_user_provider
+            methods: [POST]
 
         login:
             pattern:  ^/api/login
@@ -29,10 +26,10 @@ security:
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-#        refresh:
-#            pattern:  ^/api/token/refresh
-#            stateless: true
-#            anonymous: true
+        refresh:
+            pattern:  ^/api/token/refresh
+            stateless: true
+            anonymous: true
 
         api:
             pattern:   ^/api
@@ -42,9 +39,8 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
 
     access_control:
-#        - { path: ^/api/doc,  roles: IS_AUTHENTICATED_ANONYMOUSLY}
-#        - { path: ^/api/user,  roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: ^/api/user,  roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-#        - { path: ^/api/password/forgot, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/password/forgot, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path:  ^/api,       roles: [IS_AUTHENTICATED_FULLY,USER_VERIFIED] }
