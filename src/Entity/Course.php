@@ -59,9 +59,15 @@ class Course
      */
     private Collection $userCourses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Section::class, mappedBy="course", orphanRemoval=true)
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->userCourses = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,6 +183,36 @@ class Course
             // set the owning side to null (unless already changed)
             if ($userCourse->getCourse() === $this) {
                 $userCourse->setCourse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setCourse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->removeElement($section)) {
+            // set the owning side to null (unless already changed)
+            if ($section->getCourse() === $this) {
+                $section->setCourse(null);
             }
         }
 
