@@ -20,7 +20,7 @@ class Video
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $path;
+    private $name;
 
     /**
      * @ORM\Column(type="time", nullable=true)
@@ -37,14 +37,14 @@ class Video
         return $this->id;
     }
 
-    public function getPath(): ?string
+    public function getName(): ?string
     {
-        return $this->path;
+        return $this->name;
     }
 
-    public function setPath(?string $path): self
+    public function setName(?string $name): self
     {
-        $this->path = $path;
+        $this->name = $name;
 
         return $this;
     }
