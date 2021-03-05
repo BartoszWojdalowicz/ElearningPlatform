@@ -80,13 +80,16 @@ class LessonController extends AbstractFOSRestController
      * @throws ExceptionInterface
      */
     public function postVideo(ParamFetcherInterface $fetcher,SerializerInterface $serializer,Course $course,Lesson $lesson){
+
         $data=$fetcher->all();
-        $d=$this->videoUploader->checkVideoRequirments($data['video']);
-        $video=$this->videoUploader->uploadVideo($data['video'],$course);
+
+        $video=$this->videoUploader->uploadVideo($data['video'],$course->getId());
         $video->setLesson($lesson);
+
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($video);
         $entityManager->flush();
+        return new JsonResponse('',201);
 
     }
 }

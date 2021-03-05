@@ -14,6 +14,7 @@
         "egulias/email-validator": "2.1.25",
         "friendsofsymfony/rest-bundle": "^3.0",
         "gesdinet/jwt-refresh-token-bundle": "^0.10.1",
+        "james-heinrich/getid3": "^1.9",
         "lexik/jwt-authentication-bundle": "^2.11",
         "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
